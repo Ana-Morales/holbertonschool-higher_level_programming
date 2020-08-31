@@ -1,1 +1,1 @@
-This repository is about Python - Hello, World
+This repository contains the projects made with python at Holberton
