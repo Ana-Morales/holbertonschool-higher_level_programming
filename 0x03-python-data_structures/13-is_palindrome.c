@@ -24,9 +24,9 @@ int is_palindrome(listint_t **head)
 		if (ini->n != end->n)
 			return (0);
 		ini = ini->next;
-		end = *head;
+		end = ini;
 		j = 0;
-		while (j < (len - i - 1))
+		while (j < (len - (2 * i) - 2))
 		{
 			end = end->next;
 			j++;
