@@ -9,7 +9,7 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *ini = *head, *end = *head;
+	listint_t *end = *head;
 	int len = 0, i = 0, j;
 
 	if (*head == NULL)
@@ -21,10 +21,10 @@ int is_palindrome(listint_t **head)
 	}
 	while (i <= len / 2)
 	{
-		if (ini->n != end->n)
+		if ((*head)->n != end->n)
 			return (0);
-		ini = ini->next;
-		end = ini;
+		*head = (*head)->next;
+		end = *head;
 		j = 0;
 		while (j < (len - (2 * i) - 2))
 		{
