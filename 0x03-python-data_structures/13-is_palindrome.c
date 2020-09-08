@@ -10,7 +10,7 @@
 int is_palindrome(listint_t **head)
 {
 	listint_t *ini = *head, *end = *head;
-	int max_idx = 0, len = 0, i = 0, j = 0;
+	int max_idx, len = 0, i = 0, j = 0;
 
 	if (*head == NULL)
 		return (1);
@@ -18,9 +18,9 @@ int is_palindrome(listint_t **head)
 	{
 		end = end->next;
 		len++;
-		max_idx++;
 	}
-	while (i <= max_idx / 2)
+	max_idx = len / 2;
+	while (i <= max_idx)
 	{
 		if (ini->n != end->n)
 			return (0);
