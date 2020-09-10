@@ -10,15 +10,15 @@ def roman_to_int(roman_string):
     sum = 0
     s = roman_string
     if s.find("IX") != -1:
-        s = s.replace("IX", "IIIIIIIII")
+        s = s.replace("IX", "VIIII")
     if s.find("XL") != -1:
         s = s.replace("XL", "XXXX")
     if s.find("XC") != -1:
-        s = s.replace("XC", "XXXXXXXXX")
+        s = s.replace("XC", "LXXXX")
     if s.find("CD") != -1:
         s = s.replace("CD", "CCCC")
     if s.find("CM") != -1:
-        s = s.replace("CM", "MMMMMMMMM")
+        s = s.replace("CM", "DCCCC")
     ls = list(s)
     for ch in ls:
         sum += d.get(ch)
