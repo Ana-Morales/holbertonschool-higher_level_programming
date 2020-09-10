@@ -9,6 +9,8 @@ def roman_to_int(roman_string):
     d = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
     sum = 0
     s = roman_string
+    if s.find("IV") != -1:
+        s = s.replace("IV", "IIII")
     if s.find("IX") != -1:
         s = s.replace("IX", "VIIII")
     if s.find("XL") != -1:
