@@ -61,7 +61,7 @@ class Square:
     def __str__(self):
         """Method to be used when use print on Square"""
         if self.__size == 0:
-            print()
+            print(end="")
         else:
             print("\n" * self.__position[1], end="")
             for j in range(self.__size):
