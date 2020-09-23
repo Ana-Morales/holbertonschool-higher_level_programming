@@ -35,19 +35,25 @@ class Square:
         return self.__size * self.__size
     def __eq__(self, other):
         """Return True if self and other are equal"""
+
         return self.area() == other.area()
+
     def __ne__(self, other):
         """Return True if self is different from other"""
         return self.area() != other.area()
+
     def __gt__(self, other):
         """Return True if self is grater than other"""
         return self.area() > other.area()
+
     def __ge__(self, other):
         """Return True if self is grater or equal than other"""
         return self.area() >= other.area()
+
     def __lt__(self, other):
         """Return True if self is less than other"""
         return self.area() < other.area()
+
     def __le__(self, other):
         """Return True if self is less or equal than other"""
         return self.area() <= other.area()
