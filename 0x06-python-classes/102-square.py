@@ -33,6 +33,7 @@ class Square:
         """Returns the area of a square"""
 
         return self.__size * self.__size
+
     def __eq__(self, other):
         """Return True if self and other are equal"""
 
