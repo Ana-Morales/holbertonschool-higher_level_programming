@@ -1,0 +1,35 @@
+Module: 4-print_square
+===========================
+
+Using print_square
+---------------------------
+
+>>> print_square = __import__('4-print_square').print_square
+
+
+Successful cases:
+>>> print_square(4)
+####
+####
+####
+####
+
+>>> print_square(0)
+<BLANKLINE>
+
+>>> print_square(1)
+#
+
+Raise Type Error:
+>>> print_square(-1.5)
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+>>> print_square("5")
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+Raise Value Error:
+>>> print_square(-2)
+Traceback (most recent call last):
+ValueError: size must be >= 0

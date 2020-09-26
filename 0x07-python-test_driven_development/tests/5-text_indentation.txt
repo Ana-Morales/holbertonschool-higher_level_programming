@@ -1,0 +1,86 @@
+Module: 5-text_indentation
+===========================
+
+Using text_indentation
+---------------------------
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Raising Type Error with message: text must be a string:
+>>> text_indentation(1234)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+>>> text_indentation(["hola"])
+Traceback (most recent call last):
+TypeError: text must be a string
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+Successful cases:
+
+Text ending without special char:
+>>> text_indentation("Hi. What's your name? My name is: Ana")
+Hi.
+<BLANKLINE>
+What's your name?
+<BLANKLINE>
+My name is:
+<BLANKLINE>
+Ana
+
+Text ending in special char:
+>>> text_indentation("Hi. What's your name? My name is: Ana.")
+Hi.
+<BLANKLINE>
+What's your name?
+<BLANKLINE>
+My name is:
+<BLANKLINE>
+Ana.
+<BLANKLINE>
+
+Text with only special chars:
+>>> text_indentation(".??:.   .")
+.
+<BLANKLINE>
+?
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+
+Text ending with spaces:
+>>> text_indentation("Holberton School.      ")
+Holberton School.
+<BLANKLINE>
+
+Text with just spaces:
+>>> text_indentation("      ")
+
+Text with just a newline:
+>>> text_indentation("\n")
+<BLANKLINE>
+
+Text starting with special character:
+>>> text_indentation(":   Hello?")
+:
+<BLANKLINE>
+Hello?
+<BLANKLINE>
+
+Text with newline in the middle:
+>>> text_indentation("Holberton School.\n Cohort 12, Colombia.  2020")
+Holberton School.
+<BLANKLINE>
+<BLANKLINE>
+Cohort 12, Colombia.
+<BLANKLINE>
+2020
