@@ -7,7 +7,4 @@ from the specified class ; otherwise False
 
 def inherits_from(obj, a_class):
     """Defines inherits_from function"""
-    if type(obj) != a_class:
-        return issubclass(type(obj), a_class)
-    else:
-        return False
+    return(issubclass(type(obj), a_class) and type(obj) != a_class)
