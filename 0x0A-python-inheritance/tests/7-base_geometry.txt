@@ -19,9 +19,25 @@ Value is not an integer:
 Traceback (most recent call last):
 TypeError: name must be an integer
 
->>> bg.integer_validator("float", "2.5")
+>>> bg.integer_validator("float", 2.5)
 Traceback (most recent call last):
 TypeError: float must be an integer
+
+>>> bg.integer_validator("lst", [1, 2])
+Traceback (most recent call last):
+TypeError: lst must be an integer
+
+>>> bg.integer_validator("tup", (1 ,2))
+Traceback (most recent call last):
+TypeError: tup must be an integer
+
+>>> bg.integer_validator("Nothing", None)
+Traceback (most recent call last):
+TypeError: Nothing must be an integer
+
+>>> bg.integer_validator("boolean", True)
+Traceback (most recent call last):
+TypeError: boolean must be an integer
 
 Value is less or equal to 0:
 
