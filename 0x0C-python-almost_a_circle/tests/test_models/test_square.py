@@ -90,15 +90,47 @@ class TestRectangle(unittest.TestCase):
     def test_update(self):
         """Testing update method"""
         s12 = Square(10, 10, 10)
+        expected = "[Square] (89) 10/10 - 10\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            s12.update(89)
+            print(s12)
+            self.assertEqual(buf.getvalue(), expected)
+        expected = "[Square] (89) 10/10 - 2\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            s12.update(89, 2)
+            print(s12)
+            self.assertEqual(buf.getvalue(), expected)
         expected = "[Square] (89) 4/10 - 2\n"
         with StringIO() as buf, contextlib.redirect_stdout(buf):
             s12.update(89, 2, 4)
             print(s12)
             self.assertEqual(buf.getvalue(), expected)
-        s13 = Square(10, 10, 10)
-        expected = "[Square] (89) 1/3 - 2\n"
+        expected = "[Square] (89) 4/5 - 2\n"
         with StringIO() as buf, contextlib.redirect_stdout(buf):
-            s13.update(x=1, size=2, y=3, id=89)
+            s12.update(89, 2, 4, 5)
+            print(s12)
+            self.assertEqual(buf.getvalue(), expected)
+
+        Base._Base__nb_objects = 0
+        s13 = Square(10, 10, 10)
+        expected = "[Square] (1) 10/10 - 1\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            s13.update(size=1)
+            print(s13)
+            self.assertEqual(buf.getvalue(), expected)
+        expected = "[Square] (1) 1/10 - 1\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            s13.update(x=1)
+            print(s13)
+            self.assertEqual(buf.getvalue(), expected)
+        expected = "[Square] (89) 2/10 - 1\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            s13.update(x=2, id=89)
+            print(s13)
+            self.assertEqual(buf.getvalue(), expected)
+        expected = "[Square] (89) 1/4 - 3\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            s13.update(x=1, size=3, y=4)
             print(s13)
             self.assertEqual(buf.getvalue(), expected)
 
