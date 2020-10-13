@@ -44,12 +44,26 @@ class TestBaseCls(unittest.TestCase):
         d = {'x': 2, 'width': 10, 'id': 1, 'height': 7, 'y': 8}
         json_dic = Base.to_json_string([d])
         self.assertTrue(type(json_dic) is str)
+        self.assertIn('"x": 2', json_dic)
+
+        json_dic = Base.to_json_string([])
+        self.assertEqual("[]", json_dic)
+
+        json_dic = Base.to_json_string(None)
+        self.assertEqual("[]", json_dic)
 
     def test_from_json_string(self):
         """Testing from json string method"""
         json_string = '[{"height": 4, "width": 10, "id": 89}]'
         ls = Base.from_json_string(json_string)
         self.assertTrue(type(ls) is list)
+        self.assertIn({"height": 4, "width": 10, "id": 89}, ls)
+
+        ls = Base.from_json_string(None)
+        self.assertEqual(ls, [])
+
+        ls = Base.from_json_string("")
+        self.assertEqual(ls, [])
 
     def test_save_to_file(self):
         """Testing save to file method"""
@@ -65,6 +79,10 @@ class TestBaseCls(unittest.TestCase):
         with open("Square.json", "r") as f:
             self.assertEqual(json.dumps([s1.to_dictionary(),
                                          s2.to_dictionary()]), f.read())
+
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual("[]", f.read())
 
     def test_create(self):
         """Testing create method"""
