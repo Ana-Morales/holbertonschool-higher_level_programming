@@ -19,6 +19,8 @@ class TestRectangle(unittest.TestCase):
     def test_number_attr(self):
         """Testing number of argumnets"""
         with self.assertRaises(TypeError):
+            r = Rectangle()
+        with self.assertRaises(TypeError):
             r = Rectangle(1)
         with self.assertRaises(TypeError):
             r = Rectangle(1, 1, 1, 1, 1, 1)
@@ -55,6 +57,10 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.id, 3)
         self.assertEqual(r4.id, 10)
         self.assertEqual(r5.id, 4)
+        self.assertEqual(r1.width, 1)
+        self.assertEqual(r1.height, 1)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
 
     def test_area(self):
         """Testing area method"""
@@ -89,15 +95,54 @@ class TestRectangle(unittest.TestCase):
     def test_update(self):
         """Testing update method"""
         r12 = Rectangle(10, 10, 10, 10)
+        expected = "[Rectangle] (89) 10/10 - 10/10\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            r12.update(89)
+            print(r12)
+            self.assertEqual(buf.getvalue(), expected)
+        expected = "[Rectangle] (89) 10/10 - 2/10\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            r12.update(89, 2)
+            print(r12)
+            self.assertEqual(buf.getvalue(), expected)
+        expected = "[Rectangle] (89) 10/10 - 2/3\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            r12.update(89, 2, 3)
+            print(r12)
+            self.assertEqual(buf.getvalue(), expected)
         expected = "[Rectangle] (89) 4/10 - 2/3\n"
         with StringIO() as buf, contextlib.redirect_stdout(buf):
             r12.update(89, 2, 3, 4)
             print(r12)
             self.assertEqual(buf.getvalue(), expected)
+        expected = "[Rectangle] (89) 4/5 - 2/3\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            r12.update(89, 2, 3, 4, 5)
+            print(r12)
+            self.assertEqual(buf.getvalue(), expected)
+
+        Base._Base__nb_objects = 0
         r13 = Rectangle(10, 10, 10, 10)
+        expected = "[Rectangle] (1) 10/10 - 10/1\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            r13.update(height=1)
+            print(r13)
+            self.assertEqual(buf.getvalue(), expected)
+
+        expected = "[Rectangle] (1) 2/10 - 1/1\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            r13.update(width=1, x=2)
+            print(r13)
+            self.assertEqual(buf.getvalue(), expected)
+
+        expected = "[Rectangle] (89) 3/1 - 2/1\n"
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            r13.update(y=1, width=2, x=3, id=89)
+            print(r13)
+            self.assertEqual(buf.getvalue(), expected)
         expected = "[Rectangle] (89) 1/3 - 4/2\n"
         with StringIO() as buf, contextlib.redirect_stdout(buf):
-            r13.update(x=1, height=2, y=3, width=4, id=89)
+            r13.update(x=1, height=2, y=3, width=4)
             print(r13)
             self.assertEqual(buf.getvalue(), expected)
 
@@ -111,5 +156,7 @@ class TestRectangle(unittest.TestCase):
             r14.update(**r15_dict)
             print(r14)
             self.assertEqual(buf.getvalue(), expected)
+            self.assertTrue(type(r15_dict) is dict)
+
 if __name__ == '__main__':
     unittest.main()
