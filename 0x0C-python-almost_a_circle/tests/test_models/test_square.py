@@ -109,6 +109,7 @@ class TestRectangle(unittest.TestCase):
             s14.update(**s15_dict)
             print(s14)
             self.assertEqual(buf.getvalue(), expected)
+            self.assertTrue(type(s15_dict) is dict)
 
 if __name__ == '__main__':
     unittest.main()
