@@ -53,6 +53,9 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(s3.id, 3)
         self.assertEqual(s4.id, 10)
         self.assertEqual(s5.id, 4)
+        self.assertEqual(s1.size, 1)
+        self.assertEqual(s1.x, 0)
+        self.assertEqual(s1.y, 0)
 
     def test_area(self):
         """Testing area method"""
