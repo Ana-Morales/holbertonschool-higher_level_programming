@@ -5,16 +5,21 @@
 def find_peak(ls):
     """Finds a peak in a list of unsorted integers"""
 
-    if len(ls) == 0:
-        peak = None
+    length = len(ls)
+    if length == 0:
+        return None
+    if length == 1:
+        return ls[0]
+    m = length // 2
+    if m == length - 1:
+        if ls[m] > ls[m - 1]:
+            return ls[m]
+        return ls[m - 1]
+    if ls[m] > ls[m + 1] and ls[m] > ls[m - 1]:
+        return ls[m]
     else:
-        peak = ls[0]
-        for i in range(1, len(ls)):
-            if i == len(ls) - 1:
-                break
-            if ls[i] > ls[i - 1] and ls[i] > ls[i + 1]:
-                peak = ls[i]
-                break
-            if ls[i] == ls[i + 1] and peak > ls[i]:
-                break
-    return peak
+        l_m = find_peak(ls[:m])
+        l_r = find_peak(ls[m:])
+        if l_m > l_r:
+            return l_m
+        return l_r
