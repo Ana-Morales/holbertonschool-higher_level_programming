@@ -19,7 +19,7 @@ def find_peak(ls):
         return ls[m]
     else:
         l_m = find_peak(ls[:m])
-        l_r = find_peak(ls[m:])
+        l_r = find_peak(ls[m + 1:])
         if l_m > l_r:
             return l_m
         return l_r
