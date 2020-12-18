@@ -5,9 +5,9 @@
 def find_peak(ls):
     """Finds a peak in a list of unsorted integers"""
 
-    length = len(ls)
-    if length == 0:
+    if len(ls) == 0:
         return None
+    length = len(ls)
     if length == 1:
         return ls[0]
     m = length // 2
